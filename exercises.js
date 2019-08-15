@@ -150,7 +150,7 @@ const sportExercises = [
     video: ''
   },
   { id: 11,
-    exercise: 'Benchpress Dumbbells',
+    exercise: 'Benchpress With Dumbbells',
     category: 'Chest',
     primary_muscles: 'Chest',
     secondary_muscles: 'Shoulders, Triceps',
@@ -185,14 +185,19 @@ const sportExercises = [
     gif: '',
     video: ''
   },
+  /// Shoulders \\\
   { id: 14,
-    exercise: 'Biceps Curl With Cable',
-    category: 'Arms',
-    primary_muscles: '',
+    exercise: 'Shoulder Press With Dumbbells',
+    category: 'Shoulders',
+    primary_muscles: 'Shoulders',
     secondary_muscles: '',
-    description: ``,
+    description: `Sit on a bench, the back rest should be almost
+     vertical. Take two dumbbells and bring them up to shoulder 
+     height, the palms and the elbows point during the whole exercise 
+     to the front. Press the weights up, at the highest
+     point they come very near but don't touch. Go slowly down and repeat.`,
     comments: ``,
-    gif: '',
+    gif: 'https://thumbs.gfycat.com/PeacefulFastAmericanalligator-small.gif',
     video: ''
   },
   { id: 15,
@@ -245,14 +250,21 @@ const sportExercises = [
     gif: '',
     video: ''
   },
+  /// BACK \\\
   { id: 20,
     exercise: 'Biceps Curl With Cable',
-    category: 'Arms',
-    primary_muscles: '',
-    secondary_muscles: '',
-    description: ``,
-    comments: ``,
-    gif: '',
+    category: 'Back',
+    primary_muscles: 'Latissimus, Trapezius',
+    secondary_muscles: 'Shoulders, Biceps',
+    description: `Grab the pull up bar with a wide grip,
+     the body is hanging freely. Keep your chest out and pull
+      yourself up till your chin reaches the bar or it touches
+       your neck, if you want to pull behind you. Go with a 
+    slow and controlled movement down, always keeping the chest out.`,
+    comments: `Keep your head up.
+    Keep your chest out.
+    The elbows always point back, don't let them open sidewards`,
+    gif: 'https://thumbs.gfycat.com/BiodegradableDistantFreshwatereel-small.gif',
     video: ''
   },
   { id: 21,
@@ -305,24 +317,34 @@ const sportExercises = [
     gif: '',
     video: ''
   },
+/// LEGS \\\
   { id: 26,
-    exercise: 'Biceps Curl With Cable',
-    category: 'Arms',
-    primary_muscles: '',
-    secondary_muscles: '',
-    description: ``,
+    exercise: 'Front Squats',
+    category: 'Legs',
+    primary_muscles: 'Gluteus maximus',
+    secondary_muscles: 'Abs',
+    description: `Begin with the barbell across the front
+     side of your shoulders. Place your fingertips under the 
+     barbell just outside of your shoulders and drive your elbows up.
+      Keeping your chest up and core tight, bend at your hips and knees
+       to lower
+     into a squat until your thighs are parallel to the ground.`,
     comments: ``,
-    gif: '',
+    gif: 'https://cerin.files.wordpress.com/2011/01/front-squat-good-pov.gif',
     video: ''
   },
   { id: 27,
-    exercise: 'Biceps Curl With Cable',
-    category: 'Arms',
-    primary_muscles: '',
+    exercise: 'Back Squats',
+    category: 'Legs',
+    primary_muscles: 'Gluteus maximus',
     secondary_muscles: '',
-    description: ``,
+    description: `Stand with the bar on your upper-back, 
+    and your feet shoulder-width apart. Squat down by pushing your
+     knees to the side while moving hips back. Break parallel by 
+     Squatting down until your hips are lower than your knees.
+     Squat back up while keeping your knees out and chest up`,
     comments: ``,
-    gif: '',
+    gif: 'https://thumbs.gfycat.com/PepperyScrawnyBurro-small.gif',
     video: ''
   },
   { id: 28,
@@ -496,3 +518,62 @@ const sportExercises = [
     video: ''
   }
 ]
+
+
+
+// Data which we get from API :
+
+// {
+//   "id": 405,
+//   "license_author": "Mikko Ruohola",
+//   "status": "2",
+//   "description": "<p>Put barbell on the back of your shoulders. Stand upright, then take the first step forward. Step should bring you forward so that your supporting legs knee can touch the floor. Then stand back up and repeat with the other leg.</p>\n<p>Remember to keep good posture.</p>",
+//   "name": "Barbell Lunges",
+//   "name_original": "Barbell Lunges",
+//   "creation_date": "2016-07-30",
+//   "uuid": "ae6a6c23-4616-49b7-a152-49d7461c2b7f",
+//   "license": 2,
+//   "category": 9,
+//   "language": 2,
+//   "muscles": [
+//       10
+//   ],
+//   "muscles_secondary": [
+//       8
+//   ],
+//   "equipment": [
+//       1
+//   ]
+// }
+
+////////////////////////////////////////////
+
+// example of own Database:
+
+// {
+//   id: 1,
+//   video: 'www.haha.de',
+//   gif: 'haha',
+//   exercise_id: 405
+// }
+
+// Connect data with our own database ( video, GIF):
+
+// - We only need the GIF and Video if user clicks
+// on exercise
+
+// -the list where all the exercises are coming from 
+// is from the API which we use.
+
+// -when the user clicks the exercise we could save the ID from 
+// that exercise (the exercise has a ID from the data we getting from the API)
+
+// -when we make our own table with gifs and videos and saving 
+// the exercise_id ( connecting the id from the data which we get from the API)
+// we could make a get request with the saved id from our own database and should
+// be so able to can display the data from the api and the gifs and video
+
+// Result:
+
+// - we must add the exercise_id ourselves on our own database for videos and gifs 
+//  for every exercise
