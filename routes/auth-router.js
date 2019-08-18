@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const Users = require('../helpers/users-model.js');
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
 
   Users.find()
     .then(saved => {
