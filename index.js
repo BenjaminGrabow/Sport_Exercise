@@ -1,6 +1,6 @@
 const server = require('./server.js');
 
-server.listen(3500, () => {
-  console.log('server running on http://localhost:3500')
-
+const port = process.env.PORT || 3500;
+server.listen(port, () => {
+  console.log(`\n=== Server listening on port ${port}\n`);
 });
