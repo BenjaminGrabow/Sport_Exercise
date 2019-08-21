@@ -17,9 +17,9 @@ const reducer = (state = initialState, action) => {
 
       return { ...state, byId: findExercise };
 
-      case types.GET_BY_CATGEGORY:
+      case types.SHOW_CATGEGORY:
 
-          const findCategory = state.copyOfExercise.filter(exer => exer.category.toLowerCase() === action.category);
+          const findCategory = state.copyOfExercise.filter(exer => exer.category === action.category);
     
           return { ...state, exercise: findCategory };
       
