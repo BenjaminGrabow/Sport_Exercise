@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { start, getById, showCategory, closeExercise } from '../Store/actions';
+import { start, showCategory, closeExercise } from '../Store/actions';
 
 class CreateWorkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      currentPage: 1,
-      postsPerPage: 10,
     }
   }
 
@@ -18,21 +16,10 @@ class CreateWorkout extends React.Component {
 showCategory = e => {
   this.props.showCategory(e.target.textContent);
 };
-  
+
   render() { 
     // add font awesome !!!
-    const indexOfLastPost = this.state.currentPage * this.state.postPerPage;
-    const indexOfFirstPost = indexOfLastPost - this.state.postPerPage;
-    const currentPosts = this.props.exercise.slice(indexOfFirstPost, indexOfLastPost);
-
-const totalPosts = this.props.exercise.length;
-let pageNumbers = [];
-
-for(let i = 1; i <= Math.ceil(totalPosts / this.state.postsPerPage); i++) {
-pageNumbers.push(i);
-};
-
-
+  
     if (this.props.byId) {
       return (
         <div>
@@ -54,9 +41,9 @@ pageNumbers.push(i);
   <button onClick={this.showCategory}>Legs</button>
  <button onClick={this.showCategory}>Shoulders</button>  
  </div>
+
      { this.props.exercise ? ( this.props.exercise.map((exer, index) => {
       return <div key={index}>
-      
         <p
         onClick={() => this.props.getById(exer.id)}>{exer.exercise}</p>
         <button>Add</button> 
@@ -64,6 +51,13 @@ pageNumbers.push(i);
      
         </div>
     })) : null }
+
+        { this.props.pageNumbers ? ( this.props.pageNumbers.map((num, index) => {
+      return <ul key={index}>
+        <li>{num}</li>
+        </ul>
+    })) : null }
+
 </div>
      )
   }
@@ -72,11 +66,12 @@ pageNumbers.push(i);
 const mapStateToProps = state => {
   return {
     exercise: state.exercise,
-    byId: state.byId
+    byId: state.byId,
+    pageNumbers: state.pageNumbers,
   };
 };
  
-export default connect(mapStateToProps, { start, getById, showCategory, closeExercise })(CreateWorkout);
+export default connect(mapStateToProps, { start, showCategory, closeExercise })(CreateWorkout);
 
 // WITH CHECKBOX
 
