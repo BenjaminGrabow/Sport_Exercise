@@ -37,13 +37,10 @@ class CreateWorkout extends React.Component {
     return (
       <div>
         <div className="categories">
-          <button onClick={this.showCategory}>Arms</button>
-          <button onClick={this.showCategory}>Chest</button>
-          <button onClick={this.showCategory}>Back</button>
-          <button onClick={this.showCategory}>Legs</button>
-          <button onClick={this.showCategory}>Shoulders</button>
+          {['Arms', 'Chest', 'Back', 'Legs', 'Shoulders']
+          .map((category, index) =>
+           <button  key={index} onClick={this.showCategory}>{category}</button>)}
         </div>
-        {/* // we could make categories in array and mapping over because of DRY code */}
 
         {this.props.exercises ? (this.props.exercises.map((exer, index) => {
           return <div key={index}>

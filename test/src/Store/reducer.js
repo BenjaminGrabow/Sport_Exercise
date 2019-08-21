@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
     case types.START:
       return { ...state, exercises: action.payload, copyOfExercises: action.payload };
 
-      
       case types.SHOW_CATGEGORY:
         let searchResultForCategory = state.copyOfExercises.filter(exer => exer.category === action.category);
         // SEARCH THE CLICKED CATEGORY
