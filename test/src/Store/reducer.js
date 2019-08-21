@@ -16,8 +16,8 @@ const reducer = (state = initialState, action) => {
 
       
       case types.SHOW_CATGEGORY:
-        
         let searchResultForCategory = state.copyOfExercise.filter(exer => exer.category === action.category);
+        // SEARCH THE CLICKED CATEGORY
         
         const indexOfLastPost = state.currentPage * state.postsPerPage;
         
@@ -25,8 +25,12 @@ const reducer = (state = initialState, action) => {
         
         const currentPosts = searchResultForCategory.slice(indexOfFirstPost, indexOfLastPost);
         
+        // GET THE CURRENT EXERCISES FROM THE CATEGORY (BUT ONLY SPECIFIC AMOUNT FOR PAGINATION ) 
+
         const totalPosts = searchResultForCategory.length;
         
+        // PAGENUMBERS KEEPS TRACK OF THE NUMBER OF BUTTONS
+        // WE NEED FOR CURRENT AMOUNT OF EXERCISES FOR THE CATEGORY
         let pageNumbers = [];
         
         for (let i = 1; i <= Math.ceil(totalPosts / state.postsPerPage); i++) {
