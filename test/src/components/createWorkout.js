@@ -6,7 +6,9 @@ class CreateWorkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-     }
+      currentPage: 1,
+      postsPerPage: 10,
+    }
   }
 
   componentDidMount = () => {
@@ -18,7 +20,19 @@ showCategory = e => {
 };
   
   render() { 
-// add font awesome !!!
+    // add font awesome !!!
+    const indexOfLastPost = this.state.currentPage * this.state.postPerPage;
+    const indexOfFirstPost = indexOfLastPost - this.state.postPerPage;
+    const currentPosts = this.props.exercise.slice(indexOfFirstPost, indexOfLastPost);
+
+const totalPosts = this.props.exercise.length;
+let pageNumbers = [];
+
+for(let i = 1; i <= Math.ceil(totalPosts / this.state.postsPerPage); i++) {
+pageNumbers.push(i);
+};
+
+
     if (this.props.byId) {
       return (
         <div>
