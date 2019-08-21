@@ -1,16 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { start, getById } from './Store/actions';
+import { start, getById, getByCategory } from './Store/actions';
 import './App.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = { 
+      arms: '',
+      legs: '',
+      shoulders: '',
+      back: '',
+      chest: '',
+     }
   }
 
   componentDidMount = () => {
  this.props.start();
+};
+
+onChange = (e) => {
+  this.setState({
+    arms: false,
+    legs: false,
+    shoulders: false,
+    back: false,
+    chest: false,
+      });
+  
+      this.searchCategory(e.target.name);
+};
+
+searchCategory = (category) => {
+  this.props.getByCategory(category);
+  
+  this.setState({
+[category]: true
+  });
 };
   
   render() { 
@@ -28,11 +54,16 @@ class App extends React.Component {
 
     return ( 
 <div>
-  <input type='checkbox' name='arms' checked={this.state.arms} onChange={this.onChange} />
-  <input type='checkbox' name='chest' checked={this.state.chest} onChange={this.onChange} />
-  <input type='checkbox' name='back' checked={this.state.back} onChange={this.onChange} />
-  <input type='checkbox' name='legs' checked={this.state.legs} onChange={this.onChange} />
-  <input type='checkbox' name='shoulders' checked={this.state.shoulders} onChange={this.onChange} />  
+  <input type='checkbox' name='arms'
+   checked={this.state.arms} onChange={this.onChange} /> Arms <br />
+  <input type='checkbox' name='chest'
+   checked={this.state.chest} onChange={this.onChange} /> Chest <br />
+  <input type='checkbox' name='back'
+   checked={this.state.back} onChange={this.onChange} /> Back <br />
+  <input type='checkbox' name='legs'
+   checked={this.state.legs} onChange={this.onChange} /> Legs <br />
+  <input type='checkbox' name='shoulders'
+   checked={this.state.shoulders} onChange={this.onChange} /> Shoulders <br />  
      { this.props.exercise ? ( this.props.exercise.map(exer => {
       return <div>
         <p
@@ -51,5 +82,5 @@ const mapStateToProps = state => {
   };
 };
  
-export default connect(mapStateToProps, { start, getById })(App);
+export default connect(mapStateToProps, { start, getById, getByCategory })(App);
 
