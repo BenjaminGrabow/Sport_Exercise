@@ -28,7 +28,11 @@ class App extends React.Component {
 
     return ( 
 <div>
-  <input type='checkbox' placeholder=''/>
+  <input type='checkbox' name='arms' checked={this.state.arms} onChange={this.onChange} />
+  <input type='checkbox' name='chest' checked={this.state.chest} onChange={this.onChange} />
+  <input type='checkbox' name='back' checked={this.state.back} onChange={this.onChange} />
+  <input type='checkbox' name='legs' checked={this.state.legs} onChange={this.onChange} />
+  <input type='checkbox' name='shoulders' checked={this.state.shoulders} onChange={this.onChange} />  
      { this.props.exercise ? ( this.props.exercise.map(exer => {
       return <div>
         <p
