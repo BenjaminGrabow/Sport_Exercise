@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { start, getById, getByCategory } from './Store/actions';
+import { start, getById, getByCategory, closeExercise } from './Store/actions';
 import './App.css';
 
 class App extends React.Component {
@@ -44,7 +44,8 @@ searchCategory = (category) => {
     if (this.props.byId) {
       return (
         <div>
-          <div className="close"><i class="fa fa-window-close"/></div>
+          <div className="close"
+          onClick={this.props.closeExercise}><i class="fa fa-window-close"/></div>
            <p>{this.props.byId[0].exercise}</p>
            <p>{this.props.byId[0].description}</p>
           <img src={this.props.byId[0].gif} alt="alt"/>
@@ -82,5 +83,5 @@ const mapStateToProps = state => {
   };
 };
  
-export default connect(mapStateToProps, { start, getById, getByCategory })(App);
+export default connect(mapStateToProps, { start, getById, getByCategory, closeExercise })(App);
 
