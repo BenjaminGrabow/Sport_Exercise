@@ -5,63 +5,65 @@ import { start, showCategory, closeExercise, paginate, getExercise } from '../St
 class CreateWorkout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
     }
   }
 
   componentDidMount = () => {
- this.props.start();
-};
+    this.props.start();
 
-showCategory = e => {
-  this.props.showCategory(e.target.textContent);
-};
+    setTimeout(() => this.props.showCategory('Arms'), 1000);// That we dont see all exercises at the start
+  };
 
-  render() { 
-    // add font awesome !!!
-  
+  showCategory = e => {
+    this.props.showCategory(e.target.textContent);
+  };
+
+  render() {
+
+    // SINGLE-EXERCISE VIEW
     if (this.props.singleExercise) {
       return (
         <div>
           <div className="close"
-          onClick={this.props.closeExercise}><i class="fa fa-window-close"/></div>
-           <p>{this.props.byId[0].exercise}</p>
-           <p>{this.props.byId[0].description}</p>
-          <img src={this.props.byId[0].gif} alt="alt"/>
+            onClick={this.props.closeExercise}><i class="fa fa-window-close" /></div>
+          <p>{this.props.byId[0].exercise}</p>
+          <p>{this.props.byId[0].description}</p>
+          <img src={this.props.byId[0].gif} alt="alt" />
         </div>
       )
     }
 
-    return ( 
-<div>
-  <div className="categories">
-  <button onClick={this.showCategory}>Arms</button>
- <button onClick={this.showCategory}>Chest</button>
-  <button onClick={this.showCategory}>Back</button>
-  <button onClick={this.showCategory}>Legs</button>
- <button onClick={this.showCategory}>Shoulders</button>  
- </div>
- {/* // we could make categories in array and mapping over because of DRY code */}
-
-     { this.props.exercises ? ( this.props.exercises.map((exer, index) => {
-      return <div key={index}>
-        <p
-        onClick={() => this.props.getById(exer.id)}>{exer.exercise}</p>
-        <button>Add</button> 
-        {/* // add onClick for adding exercise to workout  */}
-     
+    return (
+      <div>
+        <div className="categories">
+          <button onClick={this.showCategory}>Arms</button>
+          <button onClick={this.showCategory}>Chest</button>
+          <button onClick={this.showCategory}>Back</button>
+          <button onClick={this.showCategory}>Legs</button>
+          <button onClick={this.showCategory}>Shoulders</button>
         </div>
-    })) : null }
+        {/* // we could make categories in array and mapping over because of DRY code */}
 
-        { this.props.pageNumbers ? ( this.props.pageNumbers.map((num, index) => {
-      return <button key={index} 
-      onClick={() => this.props.paginate(num)}>
-      {num}
-      </button>
-    })) : null }
+        {this.props.exercises ? (this.props.exercises.map((exer, index) => {
+          return <div key={index}>
+            <p
+              onClick={() => this.props.getById(exer.id)}>{exer.exercise}</p>
+            <button>Add</button>
+            {/* // add onClick for adding exercise to workout  */}
 
-</div>
-     )
+          </div>
+        })) : null}
+
+        {this.props.pageNumbers ? (this.props.pageNumbers.map((num, index) => {
+          return <button key={index}
+            onClick={() => this.props.paginate(num)}>
+            {num}
+          </button>
+        })) : null}
+
+      </div>
+    )
   }
 }
 
@@ -72,7 +74,7 @@ const mapStateToProps = state => {
     pageNumbers: state.pageNumbers,
   };
 };
- 
+
 export default connect(mapStateToProps, { start, showCategory, closeExercise, paginate, getExercise })(CreateWorkout);
 
 // WITH CHECKBOX
@@ -91,13 +93,13 @@ export default connect(mapStateToProps, { start, showCategory, closeExercise, pa
 //     back: false,
 //     chest: false,
 //       });
-  
+
 //       this.searchCategory(e.target.name);
 // };
 
 // searchCategory = (category) => {
 //   this.props.getByCategory(category);
-  
+
 //   this.setState({
 // [category]: true
 //   });

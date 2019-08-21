@@ -57,7 +57,7 @@ const reducer = (state = initialState, action) => {
               const indexOfTheFirstPost = indexOfTheLastPost - state.postsPerPage;
               
               const theCurrentPosts = state.copyOfExercises.slice(indexOfTheFirstPost, indexOfTheLastPost);
-              debugger
+              
               return { ...state, exercises: theCurrentPosts };
               
           default: return state;
