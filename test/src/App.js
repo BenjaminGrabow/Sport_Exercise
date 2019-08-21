@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { start, getById, getByCategory, closeExercise } from './Store/actions';
+import { start, getById, showCategory, closeExercise } from './Store/actions';
 import './App.css';
 
 class App extends React.Component {
@@ -19,25 +19,6 @@ class App extends React.Component {
  this.props.start();
 };
 
-onChange = (e) => {
-  this.setState({
-    arms: false,
-    legs: false,
-    shoulders: false,
-    back: false,
-    chest: false,
-      });
-  
-      this.searchCategory(e.target.name);
-};
-
-searchCategory = (category) => {
-  this.props.getByCategory(category);
-  
-  this.setState({
-[category]: true
-  });
-};
   
   render() { 
 // add font awesome !!!
@@ -55,16 +36,14 @@ searchCategory = (category) => {
 
     return ( 
 <div>
-  <input type='checkbox' name='arms'
-   checked={this.state.arms} onChange={this.onChange} /> Arms <br />
-  <input type='checkbox' name='chest'
-   checked={this.state.chest} onChange={this.onChange} /> Chest <br />
-  <input type='checkbox' name='back'
-   checked={this.state.back} onChange={this.onChange} /> Back <br />
-  <input type='checkbox' name='legs'
-   checked={this.state.legs} onChange={this.onChange} /> Legs <br />
-  <input type='checkbox' name='shoulders'
-   checked={this.state.shoulders} onChange={this.onChange} /> Shoulders <br />  
+  <div className="categories">
+  <button onClick={this.showCategory}>Arms</button>
+ <button onClick={this.showCategory}>Chest</button>
+  <button onClick={this.showCategory}>Back</button>
+  <button onClick={this.showCategory}>Legs</button>
+ <button onClick={this.showCategory}>Shoulders</button>  
+ </div>
+
      { this.props.exercise ? ( this.props.exercise.map((exer, index) => {
       return <div key={index}>
         <p
@@ -83,5 +62,51 @@ const mapStateToProps = state => {
   };
 };
  
-export default connect(mapStateToProps, { start, getById, getByCategory, closeExercise })(App);
+export default connect(mapStateToProps, { start, getById, showCategory, closeExercise })(App);
 
+// WITH CHECKBOX
+
+// arms: '',
+// legs: '',
+// shoulders: '',
+// back: '',
+// chest: '',
+
+// onChange = (e) => {
+//   this.setState({
+//     arms: false,
+//     legs: false,
+//     shoulders: false,
+//     back: false,
+//     chest: false,
+//       });
+  
+//       this.searchCategory(e.target.name);
+// };
+
+// searchCategory = (category) => {
+//   this.props.getByCategory(category);
+  
+//   this.setState({
+// [category]: true
+//   });
+// };
+
+// <div>
+//   <input type='checkbox' name='arms'
+//    checked={this.state.arms} onChange={this.onChange} /> Arms <br />
+//   <input type='checkbox' name='chest'
+//    checked={this.state.chest} onChange={this.onChange} /> Chest <br />
+//   <input type='checkbox' name='back'
+//    checked={this.state.back} onChange={this.onChange} /> Back <br />
+//   <input type='checkbox' name='legs'
+//    checked={this.state.legs} onChange={this.onChange} /> Legs <br />
+//   <input type='checkbox' name='shoulders'
+//    checked={this.state.shoulders} onChange={this.onChange} /> Shoulders <br />  
+//      { this.props.exercise ? ( this.props.exercise.map((exer, index) => {
+//       return <div key={index}>
+//         <p
+//         onClick={() => this.props.getById(exer.id)}>{exer.exercise}</p>
+//       </div>
+//     })) : null }
+// </div>
