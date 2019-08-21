@@ -18,8 +18,8 @@ class App extends React.Component {
     if (this.props.byId) {
       return (
         <div>
-           <p>{this.props.byId.exercise}</p>
-           <p>{this.props.byId.description}</p>
+           <p>{this.props.byId[0].exercise}</p>
+           <p>{this.props.byId[0].description}</p>
           <img src={this.props.byId[0].gif} alt="alt"/>
           
         </div>
@@ -27,12 +27,15 @@ class App extends React.Component {
     }
 
     return ( 
-     this.props.exercise ? ( this.props.exercise.map(exer => {
+<div>
+  <input type='checkbox' placeholder=''/>
+     { this.props.exercise ? ( this.props.exercise.map(exer => {
       return <div>
         <p
         onClick={() => this.props.getById(exer.id)}>{exer.exercise}</p>
       </div>
-    })) : null
+    })) : null }
+</div>
      )
   }
 }
@@ -45,3 +48,4 @@ const mapStateToProps = state => {
 };
  
 export default connect(mapStateToProps, { start, getById })(App);
+
