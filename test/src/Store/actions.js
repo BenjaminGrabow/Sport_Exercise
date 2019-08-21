@@ -3,6 +3,7 @@ import axios from 'axios';
 export const START = 'START';
 export const GET_BY_ID = 'GET_BY_ID';
 export const GET_BY_CATGEGORY = 'GET_BY_CATEGORY';
+export const CLOSE_EXERCISE = 'CLOSE_EXERCISE';
 
 const adress = 'http://localhost:3500/';
 
@@ -24,4 +25,8 @@ export const getById = (id) => {
 
 export const getByCategory = (category) => {
   return { type: GET_BY_CATGEGORY, category: category };   
+};
+
+export const closeExercise = (category) => {
+  return { type: CLOSE_EXERCISE };   
 };

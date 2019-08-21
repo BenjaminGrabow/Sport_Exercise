@@ -22,7 +22,10 @@ const reducer = (state = initialState, action) => {
           const findCategory = state.copyOfExercise.filter(exer => exer.category.toLowerCase() === action.category);
     
           return { ...state, exercise: findCategory };
+      
+          case types.CLOSE_EXERCISE:
 
+              return { ...state, byId: null };
     default: return state;
   }
 };
