@@ -40,14 +40,14 @@ searchCategory = (category) => {
 };
   
   render() { 
-
+// add font awesome !!!
     if (this.props.byId) {
       return (
         <div>
+          <div className="close"><i class="fa fa-window-close"/></div>
            <p>{this.props.byId[0].exercise}</p>
            <p>{this.props.byId[0].description}</p>
           <img src={this.props.byId[0].gif} alt="alt"/>
-          
         </div>
       )
     }
@@ -64,8 +64,8 @@ searchCategory = (category) => {
    checked={this.state.legs} onChange={this.onChange} /> Legs <br />
   <input type='checkbox' name='shoulders'
    checked={this.state.shoulders} onChange={this.onChange} /> Shoulders <br />  
-     { this.props.exercise ? ( this.props.exercise.map(exer => {
-      return <div>
+     { this.props.exercise ? ( this.props.exercise.map((exer, index) => {
+      return <div key={index}>
         <p
         onClick={() => this.props.getById(exer.id)}>{exer.exercise}</p>
       </div>
