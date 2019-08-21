@@ -1,9 +1,9 @@
 import * as types from './actions';
 
 const initialState = {
-  exercise: null,
-  byId: null,
-  copyOfExercise: null,
+  exercises: null,
+  singleExercise: null,
+  copyOfExercises: null,
   currentPage: 1,
   postsPerPage: 10,
   pageNumbers: null,
@@ -12,11 +12,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.START:
-      return { ...state, exercise: action.payload, copyOfExercise: action.payload };
+      return { ...state, exercises: action.payload, copyOfExercises: action.payload };
 
       
       case types.SHOW_CATGEGORY:
-        let searchResultForCategory = state.copyOfExercise.filter(exer => exer.category === action.category);
+        let searchResultForCategory = state.copyOfExercises.filter(exer => exer.category === action.category);
         // SEARCH THE CLICKED CATEGORY
         
         const indexOfLastPost = state.currentPage * state.postsPerPage;
@@ -37,21 +37,32 @@ const reducer = (state = initialState, action) => {
           pageNumbers.push(i);
         };
       
-        return { ...state, exercise: currentPosts, pageNumbers: pageNumbers };
+        return { ...state, exercises: currentPosts, pageNumbers: pageNumbers };
         
+        
+         case types.GET_EXERCISE:
+     
+           const findExercise = state.exercises.filter(exer => exer.id === action.id);
+     
+           return { ...state, singleExercise: findExercise };
+
         case types.CLOSE_EXERCISE:
           
-          return { ...state, byId: null };
+          return { ...state, singleExercise: null };
+        
+          case types.PAGINATE:
+
+              const indexOfTheLastPost = action.num * state.postsPerPage;
+        
+              const indexOfTheFirstPost = indexOfTheLastPost - state.postsPerPage;
+              
+              const theCurrentPosts = state.copyOfExercises.slice(indexOfTheFirstPost, indexOfTheLastPost);
+              debugger
+              return { ...state, exercises: theCurrentPosts };
+              
           default: return state;
         }
       };
       
       export default reducer;
      
-     
-     // FOR CHECKBOX
-      // case types.GET_BY_ID:
-  
-      //   const findExercise = state.exercise.filter(exer => exer.id === action.id);
-  
-      //   return { ...state, byId: findExercise };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { start, showCategory, closeExercise } from '../Store/actions';
+import { start, showCategory, closeExercise, paginate, getExercise } from '../Store/actions';
 
 class CreateWorkout extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ showCategory = e => {
   render() { 
     // add font awesome !!!
   
-    if (this.props.byId) {
+    if (this.props.singleExercise) {
       return (
         <div>
           <div className="close"
@@ -41,8 +41,9 @@ showCategory = e => {
   <button onClick={this.showCategory}>Legs</button>
  <button onClick={this.showCategory}>Shoulders</button>  
  </div>
+ {/* // we could make categories in array and mapping over because of DRY code */}
 
-     { this.props.exercise ? ( this.props.exercise.map((exer, index) => {
+     { this.props.exercises ? ( this.props.exercises.map((exer, index) => {
       return <div key={index}>
         <p
         onClick={() => this.props.getById(exer.id)}>{exer.exercise}</p>
@@ -53,9 +54,10 @@ showCategory = e => {
     })) : null }
 
         { this.props.pageNumbers ? ( this.props.pageNumbers.map((num, index) => {
-      return <ul key={index}>
-        <li>{num}</li>
-        </ul>
+      return <button key={index} 
+      onClick={() => this.props.paginate(num)}>
+      {num}
+      </button>
     })) : null }
 
 </div>
@@ -65,13 +67,13 @@ showCategory = e => {
 
 const mapStateToProps = state => {
   return {
-    exercise: state.exercise,
-    byId: state.byId,
+    exercises: state.exercises,
+    singleExercise: state.singleExercise,
     pageNumbers: state.pageNumbers,
   };
 };
  
-export default connect(mapStateToProps, { start, showCategory, closeExercise })(CreateWorkout);
+export default connect(mapStateToProps, { start, showCategory, closeExercise, paginate, getExercise })(CreateWorkout);
 
 // WITH CHECKBOX
 
