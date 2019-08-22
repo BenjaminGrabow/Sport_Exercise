@@ -35,7 +35,10 @@ class CreateWorkout extends React.Component {
     }
 
     return (
-      <div>
+      // NAVIGATION IS HERE
+      <div className="create-workout">
+{/* // LEFT SIDE OF THE PAGE WHERE THE EXERCISE LIBRARY IS */}
+      <div className="exercise-library">
         <div className="categories">
           {['Arms', 'Chest', 'Back', 'Legs', 'Shoulders']
           .map((category, index) =>
@@ -58,7 +61,13 @@ class CreateWorkout extends React.Component {
             {num}
           </button>
         })) : null}
+      </div>
 
+{/* // RIGHT SIDE WHERE YOU CAN CHOOSE THE CONFIGS FOR YOUR SESSION */}
+<div className="workout-setting">
+
+
+</div>
       </div>
     )
   }
