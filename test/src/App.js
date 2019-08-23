@@ -1,5 +1,7 @@
 import React from 'react';
 import CreateWorkout from './components/createWorkout';
+import CircleChart from './components/CircleChart';
+import RadialChart from './components/PercentageCircle';
 import './App.css';
 
 class App extends React.Component {
@@ -12,7 +14,9 @@ class App extends React.Component {
   render() {
     return ( 
 <div>
-  <CreateWorkout/>
+  {/* <CreateWorkout/> */}
+  <CircleChart/>
+  <RadialChart/>
 </div>
      )
   }
