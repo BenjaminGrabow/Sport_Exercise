@@ -6,10 +6,10 @@ export const SHOW_CATGEGORY = 'SHOW_CATEGORY';
 export const CLOSE_EXERCISE = 'CLOSE_EXERCISE';
 export const PAGINATE = 'PAGINATE';
 
-const adress = 'http://localhost:3500/';
+const exercises = 'http://localhost:5000/exercises';
 
 export const start = () => dispatch => {
-  return axios.get(adress)
+  return axios.get(exercises)
     .then(res => {
       debugger
       dispatch({ type: START, payload: res.data });

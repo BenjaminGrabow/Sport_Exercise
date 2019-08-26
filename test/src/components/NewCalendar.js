@@ -8,7 +8,7 @@ class NewCalendar extends React.Component {
   }
 
   handleChange = e => {
-console.log(e.target)
+console.log(e)
   };
 
   render() { 

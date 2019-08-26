@@ -12,7 +12,7 @@ class CreateWorkout extends React.Component {
   componentDidMount = () => {
     this.props.start();
 
-    setTimeout(() => this.props.showCategory('Arms'), 1000);// That we dont see all exercises at the start
+    setTimeout(() => this.props.showCategory('Chest'), 1000);// That we dont see all exercises at the start
   };
 
   showCategory = e => {
@@ -27,9 +27,19 @@ class CreateWorkout extends React.Component {
         <div>
           <div className="close"
             onClick={this.props.closeExercise}><i class="fa fa-window-close" /></div>
-          <p>{this.props.byId[0].exercise}</p>
+          <p>{this.props.byId[0].exercise_name}</p>
+          <p>{this.props.byId[0].exercise_ratings}</p>
           <p>{this.props.byId[0].description}</p>
-          <img src={this.props.byId[0].gif} alt="alt" />
+          <p>{this.props.byId[0].difficulty}</p>
+          <img src={this.props.byId[0].picture_one} alt="" />
+          <img src={this.props.byId[0].picture_two} alt="" />
+          <p>{this.props.byId[0].type}</p>
+          <p>{this.props.byId[0].muscle}</p>
+          <p>{this.props.byId[0].equipment}</p>
+          <video width="320" height="240" controls>
+  <source src={this.props.byId[0].video} type="video/mp4" />
+Your browser does not support the video tag.
+</video>
         </div>
       )
     }
@@ -40,7 +50,9 @@ class CreateWorkout extends React.Component {
 {/* // LEFT SIDE OF THE PAGE WHERE THE EXERCISE LIBRARY IS */}
       <div className="exercise-library">
         <div className="categories">
-          {['Arms', 'Chest', 'Back', 'Legs', 'Shoulders']
+          {['Chest', 'Quadriceps', 'Lats', 'Lower Back', 'Hamstrings',
+'Calves', 'Triceps', 'Traps', 'Shoulders', 'Abdominals',
+'Glutes', 'Biceps', "Adductors", "Abductors"]
           .map((category, index) =>
            <button  key={index} onClick={this.showCategory}>{category}</button>)}
         </div>
