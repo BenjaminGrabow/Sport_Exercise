@@ -16,6 +16,12 @@ class CreateWorkout extends React.Component {
     setTimeout(() => this.props.showCategory('Chest'), 1000);// That we dont see all exercises at the start
   };
 
+  handleChange = (e) => {
+    this.setState({
+      searchForName: '',
+    });
+  };
+
   showCategory = e => {
     this.props.showCategory(e.target.textContent);
   };
@@ -52,6 +58,7 @@ Your browser does not support the video tag.
       )
     }
 
+//Multi-Exercises-View
     return (
       // NAVIGATION IS HERE
       <div className="create-workout">
@@ -62,11 +69,13 @@ Your browser does not support the video tag.
           .map((category, index) =>
            <button  key={index} onClick={this.showCategory}>{category}</button>)}
         </div>
+        
+        <input value={this.state.searchForName} onChange={this.handleChange} placeholder="Search for Exercise" />
 
-        {this.props.exercises ? (this.props.exercises.map((exer, index) => {
+        {this.props.exercises ? (this.props.exercises.map((exercise, index) => {
           return <div key={index}>
             <p
-              onClick={() => this.props.getExercise(exer.id)}>{exer.exercise_name}</p>
+              onClick={() => this.props.getExercise(exercise.id)}>{exercise.exercise_name}</p>
             <button>Add</button>
             {/* // add onClick for adding exercise to workout  */}
 
