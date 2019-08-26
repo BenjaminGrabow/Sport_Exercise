@@ -1,12 +1,13 @@
 import React from 'react';
 import Difficulty from './Difficulty';
 import { connect } from 'react-redux';
-import { fetchExercises, showCategory, closeExercise, paginate, getExercise } from '../Store/actions';
+import { fetchExercises, showCategory, closeExercise, paginate, getExercise, searchExercise } from '../Store/actions';
 
 class CreateWorkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchForName: '',
     }
   }
 
@@ -17,6 +18,8 @@ class CreateWorkout extends React.Component {
   };
 
   handleChange = (e) => {
+  this.props.searchExercise(e.target.value)
+
     this.setState({
       searchForName: '',
     });
@@ -108,7 +111,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchExercises, showCategory, closeExercise, paginate, getExercise })(CreateWorkout);
+export default connect(mapStateToProps, { fetchExercises, showCategory, closeExercise, paginate, getExercise, searchExercise })(CreateWorkout);
 
 // WITH CHECKBOX
 
