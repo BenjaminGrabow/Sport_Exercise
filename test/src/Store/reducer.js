@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, exercises: action.payload, copyOfExercises: action.payload };
 
       case types.SHOW_CATGEGORY:
-        let searchResultForCategory = state.copyOfExercises.filter(exer => exer.category === action.category);
+        let searchResultForCategory = state.copyOfExercises.filter(exer => exer.muscle === action.category);
         // SEARCH THE CLICKED CATEGORY
         
         const indexOfLastPost = state.currentPage * state.postsPerPage;

@@ -27,17 +27,17 @@ class CreateWorkout extends React.Component {
         <div>
           <div className="close"
             onClick={this.props.closeExercise}><i class="fa fa-window-close" /></div>
-          <p>{this.props.byId[0].exercise_name}</p>
-          <p>{this.props.byId[0].exercise_ratings}</p>
-          <p>{this.props.byId[0].description}</p>
-          <p>{this.props.byId[0].difficulty}</p>
-          <img src={this.props.byId[0].picture_one} alt="" />
-          <img src={this.props.byId[0].picture_two} alt="" />
-          <p>{this.props.byId[0].type}</p>
-          <p>{this.props.byId[0].muscle}</p>
-          <p>{this.props.byId[0].equipment}</p>
+          <p>{this.props.singleExercise[0].exercise_name}</p>
+          <p>{this.props.singleExercise[0].exercise_ratings}</p>
+          <p>{this.props.singleExercise[0].description}</p>
+          <p>{this.props.singleExercise[0].difficulty}</p>
+          <img src={this.props.singleExercise[0].picture_one} alt="" />
+          <img src={this.props.singleExercise[0].picture_two} alt="" />
+          <p>{this.props.singleExercise[0].type}</p>
+          <p>{this.props.singleExercise[0].muscle}</p>
+          <p>{this.props.singleExercise[0].equipment}</p>
           <video width="320" height="240" controls>
-  <source src={this.props.byId[0].video} type="video/mp4" />
+  <source src={this.props.singleExercise[0].video} type="video/mp4" />
 Your browser does not support the video tag.
 </video>
         </div>
@@ -60,7 +60,7 @@ Your browser does not support the video tag.
         {this.props.exercises ? (this.props.exercises.map((exer, index) => {
           return <div key={index}>
             <p
-              onClick={() => this.props.getById(exer.id)}>{exer.exercise}</p>
+              onClick={() => this.props.getExercise(exer.id)}>{exer.exercise_name}</p>
             <button>Add</button>
             {/* // add onClick for adding exercise to workout  */}
 
@@ -137,7 +137,7 @@ export default connect(mapStateToProps, { start, showCategory, closeExercise, pa
 //      { this.props.exercise ? ( this.props.exercise.map((exer, index) => {
 //       return <div key={index}>
 //         <p
-//         onClick={() => this.props.getById(exer.id)}>{exer.exercise}</p>
+//         onClick={() => this.props.getsingleExercise(exer.id)}>{exer.exercise}</p>
 //       </div>
 //     })) : null }
 // </div>
