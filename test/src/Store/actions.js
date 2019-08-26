@@ -8,14 +8,14 @@ export const PAGINATE = 'PAGINATE';
 
 const exercises = 'http://localhost:5000/exercises';
 
-export const FetchExercises = () => dispatch => {
+export const fetchExercises = () => dispatch => {
   return axios.get(exercises)
     .then(res => {
-      debugger
+      
       dispatch({ type: FETCH_EXERCISES, payload: res.data });
     })
     .catch(err => {
-      debugger
+      
     })
 };
 

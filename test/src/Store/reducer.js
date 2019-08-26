@@ -12,7 +12,9 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_EXERCISES:
-      return { ...state, exercises: action.payload, copyOfExercises: action.payload };
+      const filterExercisesWithoutRating = action.payload.filter(exercise => exercise.exercise_ratings !== "n/a");
+      debugger
+      return { ...state, exercises: filterExercisesWithoutRating, copyOfExercises: filterExercisesWithoutRating };
 
       case types.SHOW_CATGEGORY:
         let searchResultForCategory = state.copyOfExercises.filter(exer => exer.muscle === action.category);
