@@ -22,7 +22,8 @@ class CreateWorkout extends React.Component {
 
   render() {
     
-    const muscles = ['Chest', 'Forearms', 'Quadriceps', "Middle Back", 'Lats', 'Lower Back', 'Neck' 'Hamstrings',
+    const muscles = ['Chest', 'Forearms', 'Quadriceps', "Middle Back", 
+    'Lats', 'Lower Back', 'Neck', 'Hamstrings',
     'Calves', 'Triceps', 'Traps', 'Shoulders', 'Abdominals',
     'Glutes', 'Biceps', "Adductors", "Abductors"];
     
