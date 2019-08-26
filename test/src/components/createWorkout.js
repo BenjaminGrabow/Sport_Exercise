@@ -1,4 +1,5 @@
 import React from 'react';
+import Difficulty from './Difficulty';
 import { connect } from 'react-redux';
 import { start, showCategory, closeExercise, paginate, getExercise } from '../Store/actions';
 
@@ -28,7 +29,7 @@ class CreateWorkout extends React.Component {
           <div className="close"
             onClick={this.props.closeExercise}><i class="fa fa-window-close" /></div>
           <p>{this.props.singleExercise[0].exercise_name}</p>
-          <p>{this.props.singleExercise[0].exercise_ratings}</p>
+  <Difficulty difficulty={Number(this.props.singleExercise[0].exercise_ratings.split('.').join(''))}/>
           <p>{this.props.singleExercise[0].description}</p>
           <p>{this.props.singleExercise[0].difficulty}</p>
           <img src={this.props.singleExercise[0].picture_one} alt="" />

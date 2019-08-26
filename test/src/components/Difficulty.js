@@ -45,7 +45,7 @@ class Difficulty extends React.Component {
         },
         labels: ['Difficulty']
       },
-      series: [67],
+      series: [this.props.difficulty],
     }
   }
 
