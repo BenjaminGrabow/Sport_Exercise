@@ -60,7 +60,13 @@ const reducer = (state = initialState, action) => {
               const theCurrentPosts = state.copyOfExercises.slice(indexOfTheFirstPost, indexOfTheLastPost);
               
               return { ...state, exercises: theCurrentPosts };
-              
+          
+              case types.SEARCH_EXERCISE:
+                  const filterSearchedExercise = state.copyOfExercises.filter(exercise =>
+                     exercise.exercise_name.toLowerCase().startsWith(action.exercise.toLowerCase()));
+                  
+                  return { ...state, exercises: filterSearchedExercise};
+            
           default: return state;
         }
       };

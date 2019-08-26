@@ -18,11 +18,18 @@ class CreateWorkout extends React.Component {
   };
 
   handleChange = (e) => {
-  this.props.searchExercise(e.target.value)
 
     this.setState({
-      searchForName: '',
+      searchForName: e.target.value,
     });
+  };
+
+  searchForName = () => {
+  this.props.searchExercise(this.state.searchForName);
+
+  this.setState({
+    searchForName: '',
+  });
   };
 
   showCategory = e => {
@@ -74,6 +81,7 @@ Your browser does not support the video tag.
         </div>
         
         <input value={this.state.searchForName} onChange={this.handleChange} placeholder="Search for Exercise" />
+<button onClick={this.searchForName} >Search</button>
 
         {this.props.exercises ? (this.props.exercises.map((exercise, index) => {
           return <div key={index}>
