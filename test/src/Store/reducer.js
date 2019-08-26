@@ -11,7 +11,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.START:
+    case types.FETCH_EXERCISES:
       return { ...state, exercises: action.payload, copyOfExercises: action.payload };
 
       case types.SHOW_CATGEGORY:

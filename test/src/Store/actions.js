@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const START = 'START';
+export const FETCH_EXERCISES = 'FETCH_EXERCISES';
 export const GET_EXERCISE = 'GET_EXERCISE';
 export const SHOW_CATGEGORY = 'SHOW_CATEGORY';
 export const CLOSE_EXERCISE = 'CLOSE_EXERCISE';
@@ -8,11 +8,11 @@ export const PAGINATE = 'PAGINATE';
 
 const exercises = 'http://localhost:5000/exercises';
 
-export const start = () => dispatch => {
+export const FetchExercises = () => dispatch => {
   return axios.get(exercises)
     .then(res => {
       debugger
-      dispatch({ type: START, payload: res.data });
+      dispatch({ type: FETCH_EXERCISES, payload: res.data });
     })
     .catch(err => {
       debugger

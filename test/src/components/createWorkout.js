@@ -1,7 +1,7 @@
 import React from 'react';
 import Difficulty from './Difficulty';
 import { connect } from 'react-redux';
-import { start, showCategory, closeExercise, paginate, getExercise } from '../Store/actions';
+import { fetchExercises, showCategory, closeExercise, paginate, getExercise } from '../Store/actions';
 
 class CreateWorkout extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class CreateWorkout extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.start();
+    this.props.fetchExercises();
 
     setTimeout(() => this.props.showCategory('Chest'), 1000);// That we dont see all exercises at the start
   };
@@ -21,24 +21,30 @@ class CreateWorkout extends React.Component {
   };
 
   render() {
-
+    
+    const muscles = ['Chest', 'Quadriceps', 'Lats', 'Lower Back', 'Hamstrings',
+    'Calves', 'Triceps', 'Traps', 'Shoulders', 'Abdominals',
+    'Glutes', 'Biceps', "Adductors", "Abductors"];
+    
     // SINGLE-EXERCISE VIEW
     if (this.props.singleExercise) {
+      const singleExercise = this.props.singleExercise[0];
+
       return (
         <div>
           <div className="close"
             onClick={this.props.closeExercise}><i class="fa fa-window-close" /></div>
-          <p>{this.props.singleExercise[0].exercise_name}</p>
-  <Difficulty difficulty={Number(this.props.singleExercise[0].exercise_ratings.split('.').join(''))}/>
-          <p>{this.props.singleExercise[0].description}</p>
-          <p>{this.props.singleExercise[0].difficulty}</p>
-          <img src={this.props.singleExercise[0].picture_one} alt="" />
-          <img src={this.props.singleExercise[0].picture_two} alt="" />
-          <p>{this.props.singleExercise[0].type}</p>
-          <p>{this.props.singleExercise[0].muscle}</p>
-          <p>{this.props.singleExercise[0].equipment}</p>
+          <p>{singleExercise.exercise_name}</p>
+  <Difficulty difficulty={Number(singleExercise.exercise_ratings.split('.').join(''))}/>
+          <p>{singleExercise.description}</p>
+          <p>{singleExercise.difficulty}</p>
+          <img src={singleExercise.picture_one} alt="" />
+          <img src={singleExercise.picture_two} alt="" />
+          <p>{singleExercise.type}</p>
+          <p>{singleExercise.muscle}</p>
+          <p>{singleExercise.equipment}</p>
           <video width="320" height="240" controls>
-  <source src={this.props.singleExercise[0].video} type="video/mp4" />
+  <source src={singleExercise.video} type="video/mp4" />
 Your browser does not support the video tag.
 </video>
         </div>
@@ -51,9 +57,7 @@ Your browser does not support the video tag.
 {/* // LEFT SIDE OF THE PAGE WHERE THE EXERCISE LIBRARY IS */}
       <div className="exercise-library">
         <div className="categories">
-          {['Chest', 'Quadriceps', 'Lats', 'Lower Back', 'Hamstrings',
-'Calves', 'Triceps', 'Traps', 'Shoulders', 'Abdominals',
-'Glutes', 'Biceps', "Adductors", "Abductors"]
+          {muscles
           .map((category, index) =>
            <button  key={index} onClick={this.showCategory}>{category}</button>)}
         </div>
@@ -94,7 +98,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { start, showCategory, closeExercise, paginate, getExercise })(CreateWorkout);
+export default connect(mapStateToProps, { fetchExercises, showCategory, closeExercise, paginate, getExercise })(CreateWorkout);
 
 // WITH CHECKBOX
 
